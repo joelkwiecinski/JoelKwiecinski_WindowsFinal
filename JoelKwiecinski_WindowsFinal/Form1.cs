@@ -51,6 +51,7 @@ namespace JoelKwiecinski_WindowsFinal
                         if (puesto.ToUpper() == "SOPORTE TÉCNICO" || puesto.ToUpper() == "DBA" || puesto.ToUpper() == "DESARROLLADOR")
                         {
                             // Puesto OK, validaciones terminadas
+                            MessageBox.Show("Todos los datos son correctos.");
                         }
                         else
                         {
