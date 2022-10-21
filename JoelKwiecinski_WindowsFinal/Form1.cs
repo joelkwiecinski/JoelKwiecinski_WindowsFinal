@@ -31,48 +31,9 @@ namespace JoelKwiecinski_WindowsFinal
             ValidarDatos();
         }
 
-        private void ValidarDatos()
-        {
-            nombre = txtNombre.Text;
-            apellido = txtApellido.Text;
-            puesto = txtPuesto.Text;
-            bool sueldoConvertido = double.TryParse(txtSueldo.Text, out sueldo);
-            if (!sueldoConvertido)
-            {
-                MessageBox.Show("Verifica que el campo de sueldo esté completado con números.");
-            } else
-            {
-                if (nombre.Length > 2 && nombre.Length < 50 && apellido.Length > 2 && apellido.Length < 50)
-                {
-                    // Tenemos todos los datos OK, seguimos
-                    if (sueldo > 0)
-                    {
-                        // Sueldo mayor a 0, seguimos
-                        if (puesto.ToUpper() == "SOPORTE TÉCNICO" || puesto.ToUpper() == "DBA" || puesto.ToUpper() == "DESARROLLADOR")
-                        {
-                            // Puesto OK, validaciones terminadas
-                            MessageBox.Show("Todos los datos son correctos.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Verifica que tu puesto sea correcto.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("El sueldo debe ser mayor a 0.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Verifica que el nombre y el apellido posean entre 2 y 50 caracteres.");
-                }
-            }
-        }
-
         private void btnMostrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("TU NOMBRE ES " + txtNombre.Text.ToUpper() + " " + txtApellido.Text.ToUpper() + " Y TU PUESTO ES " + txtPuesto.Text.ToUpper());
+            ImprimirDatos();
         }
 
         private void btnIngresarHoras_Click(object sender, EventArgs e)
@@ -81,6 +42,15 @@ namespace JoelKwiecinski_WindowsFinal
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarTodo()
+        }
+
+
+
+        #region metodos
+
+        private void LimpiarTodo()
         {
             txtNombre.Clear();
             txtApellido.Clear();
@@ -92,9 +62,10 @@ namespace JoelKwiecinski_WindowsFinal
             sueldo = 0;
         }
 
-
-
-        #region metodos
+        private void ImprimirDatos()
+        {
+            MessageBox.Show("TU NOMBRE ES " + txtNombre.Text.ToUpper() + " " + txtApellido.Text.ToUpper() + " Y TU PUESTO ES " + txtPuesto.Text.ToUpper());
+        }
 
         private void RegistrarCargaHoraria()
         {
@@ -122,6 +93,46 @@ namespace JoelKwiecinski_WindowsFinal
                 horasTotales += horasTrabajadas;
             }
             MessageBox.Show("Trabajaste un total de " + horasTotales + " horas.\nEl promedio de tus horas trabajadas es de " + (horasTotales / cargaHoraria.Length) + ".\nEl día que trabajaste menos de 4 horas fue el " + diaPocoTrabajo + ".");
+        }
+
+        private void ValidarDatos()
+        {
+            nombre = txtNombre.Text;
+            apellido = txtApellido.Text;
+            puesto = txtPuesto.Text;
+            bool sueldoConvertido = double.TryParse(txtSueldo.Text, out sueldo);
+            if (!sueldoConvertido)
+            {
+                MessageBox.Show("Verifica que el campo de sueldo esté completado con números.");
+            }
+            else
+            {
+                if (nombre.Length > 2 && nombre.Length < 50 && apellido.Length > 2 && apellido.Length < 50)
+                {
+                    // Tenemos todos los datos OK, seguimos
+                    if (sueldo > 0)
+                    {
+                        // Sueldo mayor a 0, seguimos
+                        if (puesto.ToUpper() == "SOPORTE TÉCNICO" || puesto.ToUpper() == "DBA" || puesto.ToUpper() == "DESARROLLADOR")
+                        {
+                            // Puesto OK, validaciones terminadas
+                            MessageBox.Show("Todos los datos son correctos.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Verifica que tu puesto sea correcto.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El sueldo debe ser mayor a 0.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Verifica que el nombre y el apellido posean entre 2 y 50 caracteres.");
+                }
+            }
         }
 
         #endregion
