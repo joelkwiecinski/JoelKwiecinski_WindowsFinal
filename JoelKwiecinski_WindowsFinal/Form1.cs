@@ -77,8 +77,29 @@ namespace JoelKwiecinski_WindowsFinal
 
         private void btnIngresarHoras_Click(object sender, EventArgs e)
         {
+            RegistrarCargaHoraria();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear();
+            txtApellido.Clear();
+            txtPuesto.Clear();
+            txtSueldo.Clear();
+            nombre = "";
+            apellido = "";
+            puesto = "";
+            sueldo = 0;
+        }
+
+
+
+        #region metodos
+
+        private void RegistrarCargaHoraria()
+        {
             cargaHoraria = new double[5];
-            diasSemana = new string[5] { "lunes", "martes", "miércoles", "jueves", "viernes"};
+            diasSemana = new string[5] { "lunes", "martes", "miércoles", "jueves", "viernes" };
             double horasTotales = 0;
             string diaPocoTrabajo = "";
             for (int i = 0; i < cargaHoraria.Length; i++)
@@ -103,16 +124,6 @@ namespace JoelKwiecinski_WindowsFinal
             MessageBox.Show("Trabajaste un total de " + horasTotales + " horas.\nEl promedio de tus horas trabajadas es de " + (horasTotales / cargaHoraria.Length) + ".\nEl día que trabajaste menos de 4 horas fue el " + diaPocoTrabajo + ".");
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            txtNombre.Clear();
-            txtApellido.Clear();
-            txtPuesto.Clear();
-            txtSueldo.Clear();
-            nombre = "";
-            apellido = "";
-            puesto = "";
-            sueldo = 0;
-        }
+        #endregion
     }
 }
